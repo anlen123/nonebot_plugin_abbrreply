@@ -40,3 +40,6 @@ lsp
 
 ## 安装
 pip install nonebot_plugin_abbrreply
+
+## 使用
+nonebot.load_plugin('nonebot_plugin_abbrreply')

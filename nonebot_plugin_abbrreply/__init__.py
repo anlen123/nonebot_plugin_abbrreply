@@ -20,7 +20,7 @@ async def get_sx(word):
             return msg if msg else []
 
 
-sx = on_command(cmd="sx", aliases={"缩写"})
+sx = on_startswith(cmd="sx", aliases={"缩写"})
 
 
 # 识别参数 并且给state 赋值
