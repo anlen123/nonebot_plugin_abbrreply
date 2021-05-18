@@ -1,5 +1,5 @@
 import aiohttp
-from nonebot import on_command
+from nonebot import on_startswith
 from nonebot.adapters.cqhttp import Bot, Event
 
 
