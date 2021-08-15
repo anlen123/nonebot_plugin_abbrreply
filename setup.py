@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='nonebot_plugin_abbrreply',
-    version="1.0.2",
+    version="1.0.3",
     description=(
         '缩写查询器'
     ),
