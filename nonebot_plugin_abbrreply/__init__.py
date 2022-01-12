@@ -1,6 +1,8 @@
 import aiohttp
-from nonebot import on_regex
-from nonebot.adapters.cqhttp import Bot, Event
+
+from nonebot.adapters.onebot.v11 import Message
+from nonebot.params import CommandArg
+from nonebot.plugin import on_command
 
 
 async def get_sx(word):
@@ -20,20 +22,31 @@ async def get_sx(word):
             return msg if msg else []
 
 
-sx = on_regex(pattern="(^sx\ |^缩写\ )")
+# sx = on_regex(pattern="^sx\ |^缩写\ (.*)", priority=5, block=True)
+sx = on_command("sx", aliases={"缩写"}, priority=5, block=True)
 
-# 识别参数 并且给state 赋值
 
 @sx.handle()
-async def sx_rev(bot: Bot, event: Event, state: dict):
-    msg = str(event.message).strip()[3:]
-    date = await get_sx(msg)
+async def _(args: Message = CommandArg()):
+    msg = args.extract_plain_text().strip()
+    data = await get_sx(msg)
+    result = ""
     try:
-        name = date[0]['name']
-        print(name)
-        content = date[0]['trans']
-        print(content)
-        await bot.send(event=event, message=name + "\n" + str(content))
-    except :
-        await bot.send(event=event, message="没有找到缩写")
+        data = data[0]
+        name = data['name']
+        try:
+            content = data['trans']
+            result += ' , '.join(content)
+        except KeyError:
+            pass
+        try:
+            inputs = data['inputting']
+            result += ' , '.join(inputs)
+        except KeyError:
+            pass
+        if result:
+            await sx.finish(message=name + "可能解释为：\n" + result)
+        await sx.finish(message=f"没有找到缩写 {msg} 的可能释义")
+    except KeyError:
+        await sx.finish(message=f"出错啦")
 
