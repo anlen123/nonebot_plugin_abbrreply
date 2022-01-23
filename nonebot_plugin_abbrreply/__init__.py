@@ -1,8 +1,9 @@
 import aiohttp
 
 from nonebot.adapters.onebot.v11 import Message
-from nonebot.params import CommandArg
-from nonebot.plugin import on_command
+from nonebot.params import T_State,State
+from nonebot.plugin import on_regex
+from nonebot.adapters.onebot.v11 import Bot,Event
 
 
 async def get_sx(word):
@@ -22,13 +23,12 @@ async def get_sx(word):
             return msg if msg else []
 
 
-# sx = on_regex(pattern="^sx\ |^缩写\ (.*)", priority=5, block=True)
-sx = on_command("sx", aliases={"缩写"}, priority=5, block=True)
+sx = on_regex(pattern="^sx\ |^缩写\ (.*)")
 
 
 @sx.handle()
-async def _(args: Message = CommandArg()):
-    msg = args.extract_plain_text().strip()
+async def _(bot: Bot,event: Event, state:T_State=State()):
+    msg = str(event.get_message())[3:]
     data = await get_sx(msg)
     result = ""
     try:
