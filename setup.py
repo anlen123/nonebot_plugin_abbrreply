@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='nonebot_plugin_abbrreply',
-    version="1.1.1",
+    version="1.1.2",
     description=(
         '缩写查询器'
     ),
@@ -20,5 +20,7 @@ setup(
     url='https://github.com/anlen123/nonebot_plugin_abbrreply',
     install_requires=[
         'aiohttp',
+        'nonebot-adapter-onebot>=2.0.0-beta.1,<3.0.0',
+        'nonebot2>=2.0.0-beta.1,<3.0.0',
     ]
 )
