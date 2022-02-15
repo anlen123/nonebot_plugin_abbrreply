@@ -8,7 +8,7 @@
 -->
 
 <p align="center">
-  <a href="https://v2.nonebot.dev/"><img src="https://raw.githubusercontent.com/nonebot/nonebot2/master/docs/.vuepress/public/logo.png" width="200" height="200" alt="nonebot"></a>
+  <a href="https://v2.nonebot.dev/"><img src="https://v2.nonebot.dev/logo.png" width="200" height="200" alt="nonebot"></a>
 </p>
 
 <div align="center">
@@ -43,3 +43,6 @@ pip install nonebot_plugin_abbrreply
 
 ## 使用
 nonebot.load_plugin('nonebot_plugin_abbrreply')
+
+
+# 已适配nonebot beta版本
