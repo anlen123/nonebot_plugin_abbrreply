@@ -1,7 +1,7 @@
 import aiohttp
 
 from nonebot.adapters.onebot.v11 import Message
-from nonebot.params import T_State,State
+from nonebot.params import T_State
 from nonebot.plugin import on_regex
 from nonebot.adapters.onebot.v11 import Bot,Event
 
@@ -27,7 +27,7 @@ sx = on_regex(pattern="^sx\ |^缩写\ (.*)")
 
 
 @sx.handle()
-async def _(bot: Bot,event: Event, state:T_State=State()):
+async def _(bot: Bot,event: Event):
     msg = str(event.get_message())[3:]
     data = await get_sx(msg)
     result = ""
