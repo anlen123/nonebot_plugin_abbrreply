@@ -4,7 +4,34 @@ from nonebot.adapters.onebot.v11 import Message
 from nonebot.params import T_State
 from nonebot.plugin import on_regex
 from nonebot.adapters.onebot.v11 import Bot,Event
+from nonebot.plugin import PluginMetadata
 
+__plugin_meta__ = PluginMetadata(
+    name='缩写查询器',
+    description='输入拼音首字母，猜测文字',
+    usage=(
+        "NoneBot 短句回复 查看插件"
+    ),
+    extra={
+        'menu_template': 'default',
+        'menu_data': [
+            {
+                'func': '缩写查询器',
+                'trigger_method': 'on_cmd',
+                'trigger_condition': 'sx lsp',
+                'brief_des': '查缩写',
+                'detail_des': '查缩写'
+            },
+            {
+                'func': '缩写查询器',
+                'trigger_method': 'on_cmd',
+                'trigger_condition': '缩写 lsp',
+                'brief_des': '查缩写',
+                'detail_des': '查缩写'
+            },
+        ],
+    }
+)
 
 async def get_sx(word):
     url = "https://lab.magiconch.com/api/nbnhhsh/guess"
